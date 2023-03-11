@@ -58,3 +58,22 @@ class LZ77:
                     for i in range(j):
                         res_str += string_to_replace[i % len(string_to_replace)]
         return res_str
+
+
+def read_file(name):
+    """
+    Reads file
+    """
+    with open(name, "r", encoding="utf-8") as fff:
+        lines = fff.readlines()
+    lines = "".join(lines)
+    return lines
+
+
+import sys
+code = LZ77(100)
+strr = read_file("text.txt")
+code = code.encode(strr)
+# print(code)
+print(f"text size: {sys.getsizeof(strr)/1000000} mb")
+print(f"coded size: {sys.getsizeof(code)/1000000} mb")
