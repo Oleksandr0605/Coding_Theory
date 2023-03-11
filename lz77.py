@@ -14,7 +14,7 @@ class LZ77:
         """
         self.buffer_size = buffer_size
 
-    def encode(self, input_str: str):
+    def encode(self, input_str: str) -> List[tuple]:
         """
         This method encode string.
         """
@@ -44,7 +44,7 @@ class LZ77:
                     pos += best_len + 1 # adding best_len
                     # to position to continue loop without repeat
                 except IndexError:
-                    output.append((best_offset, best_len, set()))
+                    output.append((best_offset, best_len, ''))
                     pos += best_len + 1
                     continue
             else: # if we don't have a match, adding 0 as the first element
@@ -53,25 +53,24 @@ class LZ77:
                     output.append((0, 0, input_str[pos]))
                     pos += 1
                 except IndexError:
-                    output.append((0, 0, set()))
+                    output.append((0, 0, ''))
                     pos += 1
         return output
 
-    def decode(self, encoded_list) -> str:
+    def decode(self, encoded_output: List[tuple]) -> str:
         """
-        This method decodes the string.
+        This methode decode encoding into string.
         """
-        res_str = ''
-        for tup in encoded_list:
-            for offset, max_len, next_item in [tup]:
-                if offset == 0:
-                    res_str += next_item
-                else:
-                    string_to_replace = res_str[len(res_str) - offset: len(res_str)]
-                    for _ in range(max_len):
-                        res_str += string_to_replace[offset % len(string_to_replace)]
-                    res_str += next_item
-        return res_str
+        result = ''
+        for elem in encoded_output:
+            if elem[1] == 0:
+                result += elem[2]
+            else:
+                start_index = len(result) - elem[0]
+                for i in range(elem[1]):
+                    result += result[start_index+i]
+                result += elem[2]
+        return result
 
     def compress_result(self, result: List[tuple]):
         """
