@@ -34,6 +34,9 @@ class LZW:
         return coded, ret_dict
 
     def decode(self, coded, dct: list) -> str:
+        """
+        Decoding by lzw
+        """
         decoded = ""
         thresh = 0
         for elm in coded:
@@ -88,13 +91,13 @@ code = LZW()
 # decoded = code.decode(coded)
 # print(coded[1])
 # print(coded)
-strr = "ababahalamaha"
-cod, dct = code.encode(strr)
-print(code.decode(cod, dct))
+# strr = "ababahalamaha"
+# cod, dct = code.encode(strr)
+# print(code.decode(cod, dct))
 # write_file("code.txt", coded)
-# text_stats = os.stat("text.txt")
+text_stats = os.stat("text.txt")
 # code_stats = os.stat("code.txt")
-# print(f"text size: {text_stats} mb")
+print(f"text size: {text_stats} mb")
 # print(f"code size: {code_stats} mb")
 # print(f"text size: {len(strr)}")
 # print(f"coded size: {len(coded)}")
