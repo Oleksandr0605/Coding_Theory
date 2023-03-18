@@ -23,3 +23,13 @@ class Deflate(lz77.LZ77, huffman.Huffman):
         encoded_by_lz77 = lz77.LZ77(self.buffer_size).encode(text)
         have_to_be_encoded = [tuple(elem) for elem in encoded_by_lz77]
         return huffman.Huffman().encode(have_to_be_encoded)
+
+    def decode(self, encoded_list, dct) -> str:
+        """
+        """
+        decoded_by_huff = huffman.Huffman().decode(encoded_list, dct)
+        decoded_by_lz77 = lz77.LZ77(self.buffer_size).decode(decoded_by_huff)
+        return decoded_by_lz77
+
+
+

@@ -71,6 +71,14 @@ class Huffman:
         Decoding by huffman
         """
         text = ""
+        if isinstance(list(dct.values())[0], tuple):
+            text = []
+            for cod in code:
+                try:
+                    text.append(dct[cod])
+                except:
+                    return "Wrong input"
+            return text
         for cod in code:
             try:
                 text += dct[cod]
@@ -89,16 +97,16 @@ def read_file(name):
     return lines
 
 
-import time
+# import time
 
-alg = Huffman()
-strr = read_file("text.txt")
+# alg = Huffman()
+# strr = read_file("text.txt")
 
-start_time = time.time()  # record the start time
-code, dct = alg.encode(strr)
-end_time = time.time()  # record the end time
+# start_time = time.time()  # record the start time
+# code, dct = alg.encode(strr)
+# end_time = time.time()  # record the end time
 
-print("Time taken to encode:", end_time - start_time, "seconds")
+# print("Time taken to encode:", end_time - start_time, "seconds")
 
-decoded_str = alg.decode(code, dct)
+# decoded_str = alg.decode(code, dct)
 # print(decoded_str)

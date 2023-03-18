@@ -70,10 +70,10 @@ def read_file(name):
     return lines
 
 
-import sys
-code = LZ77(100)
-strr = read_file("text.txt")
-code = code.encode(strr)
+# import sys
+# code = LZ77(100)
+# strr = read_file("text.txt")[:50]
+# code = code.encode(strr)
 # print(code)
-print(f"text size: {sys.getsizeof(strr)/1000000} mb")
-print(f"coded size: {sys.getsizeof(code)/1000000} mb")
+# print(f"text size: {sys.getsizeof(strr)/1000000} mb")
+# print(f"coded size: {sys.getsizeof(code)/1000000} mb")
